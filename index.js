@@ -69,6 +69,23 @@ client.connect(err => {
         })
     })
 
+    // all orders 
+    // app.get("/allOrders",(req, res) =>{
+    //   orderCollection.find({})
+    //   .toArray((err, allOrders) => {
+    //     res.send(allOrders);
+    //   })
+    // })
+
+    // delete order 
+    app.delete("/delete/:id", (req, res)=>{
+      const id = req.params.id
+      orderCollection.deleteOne({_id: ObjectId(id)})
+      .then(result => {
+        res.send(result.deletedCount> 0)
+      })
+    })
+
 
 
 });
